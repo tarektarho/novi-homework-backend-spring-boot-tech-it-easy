@@ -19,6 +19,6 @@ participant TelevisionWallBracketRepository
     TelevisionWallBracketService->>TelevisionWallBracketService: 12: setWallBracket(wallBracket)
     TelevisionWallBracketService->>+TelevisionWallBracketRepository: 13: setId(id)
     TelevisionWallBracketRepository->>-TelevisionWallBracketService: 16: TelevisionWallBracket
-    TelevisionWallBracketService->>-TelevisionWallBracketController: 17: Optional<TelevisionWallBracket>
+    TelevisionWallBracketService->>-TelevisionWallBracketController: 17: Collection<TelevisionWallBracket>
     TelevisionWallBracketController->>-Client:  19: Http status 201 CREATED
 ````
