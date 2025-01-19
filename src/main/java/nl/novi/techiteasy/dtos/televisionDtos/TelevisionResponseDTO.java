@@ -5,32 +5,48 @@ import nl.novi.techiteasy.dtos.remoteControllerDtos.RemoteControllerResponseDTO;
 
 public class TelevisionResponseDTO {
     private Long id;
-    private String name;
-    private String brand;
     private String type;
-    private int year;
-    private int age;
-
+    private String brand;
+    private String name;
     private Double price;
     private Double availableSize;
-    private int refreshRate = 0;
+    private Double refreshRate;
     private String screenType;
     private String screenQuality;
-    private boolean smartTv = false;
-    private boolean wifi = false;
-    private boolean voiceControl = false;
-
-
-    private boolean hdr = false;
-    private boolean bluetooth = false;
-    private boolean ambiLight = false;
-    private int originalStock = 0;
-    private int sold = 0;
-    private String soldAt;
-    private String boughtAt;
+    private Boolean smartTv;
+    private Boolean wifi;
+    private Boolean voiceControl;
+    private Boolean hdr;
+    private Boolean bluetooth;
+    private Boolean ambiLight;
+    private Integer originalStock;
+    private Integer sold;
 
     private RemoteControllerResponseDTO remoteController;
     private CIModuleDTO ciModule;
+
+    public TelevisionResponseDTO() {
+    }
+
+    public TelevisionResponseDTO(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
+        this.id = id;
+        this.type = type;
+        this.brand = brand;
+        this.name = name;
+        this.price = price;
+        this.availableSize = availableSize;
+        this.refreshRate = refreshRate;
+        this.screenType = screenType;
+        this.screenQuality = screenQuality;
+        this.smartTv = smartTv;
+        this.wifi = wifi;
+        this.voiceControl = voiceControl;
+        this.hdr = hdr;
+        this.bluetooth = bluetooth;
+        this.ambiLight = ambiLight;
+        this.originalStock = originalStock;
+        this.sold = sold;
+    }
 
     public boolean isHdr() {
         return hdr;
@@ -40,9 +56,14 @@ public class TelevisionResponseDTO {
         this.hdr = hdr;
     }
 
-    public int getAge() {
-        return java.time.Year.now().getValue() - year;
+    public Double getRefreshRate() {
+        return refreshRate;
     }
+
+    public void setRefreshRate(Double refreshRate) {
+        this.refreshRate = refreshRate;
+    }
+
 
     public Long getId() {
         return id;
@@ -68,13 +89,6 @@ public class TelevisionResponseDTO {
         this.type = type;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
 
     public Double getPrice() {
         return price;
@@ -92,13 +106,6 @@ public class TelevisionResponseDTO {
         this.availableSize = availableSize;
     }
 
-    public int getRefreshRate() {
-        return refreshRate;
-    }
-
-    public void setRefreshRate(int refreshRate) {
-        this.refreshRate = refreshRate;
-    }
 
     public String getScreenType() {
         return screenType;
@@ -116,7 +123,7 @@ public class TelevisionResponseDTO {
         this.screenQuality = screenQuality;
     }
 
-    public boolean isSmartTv() {
+    public boolean getSmartTv() {
         return smartTv;
     }
 
@@ -124,7 +131,7 @@ public class TelevisionResponseDTO {
         this.smartTv = smartTv;
     }
 
-    public boolean isWifi() {
+    public boolean getWifi() {
         return wifi;
     }
 
@@ -148,7 +155,7 @@ public class TelevisionResponseDTO {
         this.bluetooth = bluetooth;
     }
 
-    public boolean isAmbiLight() {
+    public boolean getAmbiLight() {
         return ambiLight;
     }
 
@@ -156,37 +163,22 @@ public class TelevisionResponseDTO {
         this.ambiLight = ambiLight;
     }
 
-    public int getOriginalStock() {
+    public Integer getOriginalStock() {
         return originalStock;
     }
 
-    public void setOriginalStock(int originalStock) {
+    public void setOriginalStock(Integer originalStock) {
         this.originalStock = originalStock;
     }
 
-    public int getSold() {
+    public Integer getSold() {
         return sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(Integer sold) {
         this.sold = sold;
     }
 
-    public String getSoldAt() {
-        return soldAt;
-    }
-
-    public void setSoldAt(String soldAt) {
-        this.soldAt = soldAt;
-    }
-
-    public String getBoughtAt() {
-        return boughtAt;
-    }
-
-    public void setBoughtAt(String boughtAt) {
-        this.boughtAt = boughtAt;
-    }
 
     public String getName() {
         return name;

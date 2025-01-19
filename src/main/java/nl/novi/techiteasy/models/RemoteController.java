@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Entity
-@Table(name = "remote_controllers")
+@Table(name = "remote_controller")
 public class RemoteController {
 
     @Id

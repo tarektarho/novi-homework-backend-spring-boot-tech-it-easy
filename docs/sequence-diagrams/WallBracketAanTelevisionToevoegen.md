@@ -16,7 +16,7 @@ participant TelevisionWallBracketRepository
     TelevisionWallBracketService->>+WallBracketRepository: 7: findById(wallBracketId)
     WallBracketRepository->>-TelevisionWallBracketService: 10: Optional<WallBracket>
     TelevisionWallBracketService->>TelevisionWallBracketService: 11: setTelevision(television)
-    TelevisionWallBracketService->>TelevisionWallBracketService: 12: setWallBracket(wallBracket)
+    TelevisionWallBracketService->>TelevisionWallBracketService: 12: setWallBracket(televisionWallBracket)
     TelevisionWallBracketService->>+TelevisionWallBracketRepository: 13: setId(id)
     TelevisionWallBracketRepository->>-TelevisionWallBracketService: 16: TelevisionWallBracket
     TelevisionWallBracketService->>-TelevisionWallBracketController: 17: Collection<TelevisionWallBracket>

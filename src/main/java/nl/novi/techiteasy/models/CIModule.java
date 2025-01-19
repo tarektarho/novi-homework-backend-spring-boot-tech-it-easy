@@ -7,7 +7,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ci_modules")
+@Table(name = "cimodule")
 public class CIModule {
 
     @Id
