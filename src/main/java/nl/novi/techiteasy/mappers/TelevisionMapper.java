@@ -18,7 +18,6 @@ public class TelevisionMapper {
         dto.setName(television.getName());
         dto.setBrand(television.getBrand());
         dto.setType(television.getType());
-        dto.setYear(television.getAge());
         dto.setPrice(television.getPrice());
         dto.setAvailableSize(television.getAvailableSize());
         dto.setRefreshRate(television.getRefreshRate());
@@ -28,8 +27,9 @@ public class TelevisionMapper {
         dto.setWifi(television.isWifi());
         dto.setHdr(television.isHdr());
         dto.setSold(television.getSold());
-        dto.setSoldAt(television.getSoldAt());
-        dto.setBoughtAt(television.getBoughtAt());
+        dto.setAmbiLight(television.isAmbiLight());
+        dto.setVoiceControl(television.isVoiceControl());
+        dto.setSmartTv(television.isSmartTv());
 
         // Map RemoteController to RemoteControllerResponseDTO
         if (television.getRemoteController() != null) {
@@ -57,12 +57,14 @@ public class TelevisionMapper {
         result.setRefreshRate(televisionCreateDTO.getRefreshRate());
         result.setScreenType(televisionCreateDTO.getScreenType());
         result.setScreenQuality(televisionCreateDTO.getScreenQuality());
-        result.setBluetooth(televisionCreateDTO.isBluetooth());
-        result.setWifi(televisionCreateDTO.isWifi());
-        result.setHdr(televisionCreateDTO.isHdr());
         result.setSold(televisionCreateDTO.getSold());
-        result.setSoldAt(televisionCreateDTO.getSoldAt());
-        result.setBoughtAt(televisionCreateDTO.getBoughtAt());
+        result.setAmbiLight(televisionCreateDTO.getAmbiLight());
+        result.setBluetooth(televisionCreateDTO.getBluetooth());
+        result.setHdr(televisionCreateDTO.getHdr());
+        result.setSmartTv(televisionCreateDTO.getSmartTv());
+        result.setVoiceControl(televisionCreateDTO.getVoiceControl());
+        result.setWifi(televisionCreateDTO.getWifi());
+
 
         // Assigning the RemoteController is not done in this method. That linkage happens later.
         return result;

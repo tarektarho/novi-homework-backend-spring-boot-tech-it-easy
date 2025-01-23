@@ -1,6 +1,7 @@
 package nl.novi.techiteasy.services;
 
 import nl.novi.techiteasy.dtos.WallBracketDTO;
+import nl.novi.techiteasy.exceptions.RecordNotFoundException;
 import nl.novi.techiteasy.mappers.WallBracketMapper;
 import nl.novi.techiteasy.models.WallBracket;
 import nl.novi.techiteasy.repositories.WallBracketRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WallBracketService {
@@ -28,16 +30,20 @@ public class WallBracketService {
     }
 
     public WallBracketDTO getWallBracketById(long id) {
-        WallBracket wallBracket = wallBracketRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("WallBracket not found with id " + id));
-        return WallBracketMapper.toResponseDTO(wallBracket);
+        Optional<WallBracket> wallBracket = wallBracketRepository.findById(id);
+        if(wallBracket.isPresent()) {
+            return WallBracketMapper.toResponseDTO(wallBracket.get());
+        } else {
+            throw new RecordNotFoundException("No wallbracket found with id " + id);
+        }
     }
 
-    public WallBracketDTO addWallBracket(WallBracketDTO wallBracketDTO) {
-        WallBracket wallBracket = WallBracketMapper.toEntity(wallBracketDTO);
+    public WallBracketDTO addWallBracket(WallBracketDTO wallBracketDto) {
+        WallBracket wallBracket = WallBracketMapper.toEntity(wallBracketDto);
         wallBracketRepository.save(wallBracket);
         return WallBracketMapper.toResponseDTO(wallBracket);
     }
+
 
     public void deleteWallBracket(long id) {
         wallBracketRepository.deleteById(id);
@@ -53,7 +59,9 @@ public class WallBracketService {
         storedWallBracket.setAdjustable(wallBracketDTO.getAdjustable());
         storedWallBracket.setName(wallBracketDTO.getName());
         storedWallBracket.setPrice(wallBracketDTO.getPrice());
-        wallBracketRepository.save(storedWallBracket);
-        return WallBracketMapper.toResponseDTO(storedWallBracket);
+
+
+
+        return WallBracketMapper.toResponseDTO(wallBracketRepository.save(storedWallBracket));
     }
 }

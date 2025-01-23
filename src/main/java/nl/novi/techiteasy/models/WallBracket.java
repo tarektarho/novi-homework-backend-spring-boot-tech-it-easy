@@ -1,10 +1,11 @@
 package nl.novi.techiteasy.models;
 
-import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.ArrayList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -13,18 +14,15 @@ public class WallBracket {
     @Id
     @GeneratedValue
     private Long id;
-    @NotBlank(message = "Size is mandatory")
     private String size;
-    @NotNull(message = "Adjustable is mandatory")
     private Boolean adjustable;
-    @NotBlank(message = "Name Cannot be Null")
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "wallBrackets")
-    List<Television> televisions = new ArrayList<>();
+    @OneToMany(mappedBy = "wallBracket")
+    @JsonIgnore
+    List<TelevisionWallBracket> televisionWallBrackets;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -45,8 +43,8 @@ public class WallBracket {
         return price;
     }
 
-    public List<Television> getTelevisions() {
-        return televisions;
+    public List<TelevisionWallBracket> getTelevisionWallBrackets() {
+        return televisionWallBrackets;
     }
 
     public void setId(Long id) {
@@ -69,9 +67,7 @@ public class WallBracket {
         this.price = price;
     }
 
-    public void setTelevisions(List<Television> televisions) {
-        this.televisions = televisions;
+    public void setTelevisionWallBrackets(List<TelevisionWallBracket> televisionWallBrackets) {
+        this.televisionWallBrackets = televisionWallBrackets;
     }
-
-
 }

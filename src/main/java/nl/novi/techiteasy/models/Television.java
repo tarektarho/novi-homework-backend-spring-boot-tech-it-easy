@@ -1,13 +1,16 @@
 package nl.novi.techiteasy.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.time.Year;
 import java.util.*;
 
 @Entity
-@Table(name = "televisions")
+@Table(name = "television")
 public class Television {
 
     @Id
@@ -28,7 +31,7 @@ public class Television {
     @Max(value = 10000, message = "Price must be less than 10000")
     private Double price;
     private Double availableSize;
-    private int refreshRate = 0;
+    private Double refreshRate;
     private String screenType;
     private String screenQuality;
     private boolean smartTv = false;
@@ -37,32 +40,29 @@ public class Television {
     private boolean hdr = false;
     private boolean bluetooth = false;
     private boolean ambiLight = false;
-    private int originalStock = 0;
-    private int sold = 0;
+    private Integer originalStock = 0;
+    private Integer sold = 0;
     private String soldAt;
     private String boughtAt;
     private final Date createdAt = new Date();
 
 
-    @OneToOne(mappedBy = "television", cascade = CascadeType.ALL)
+    @OneToOne
     private RemoteController remoteController;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ci_module_id")
     private CIModule ciModule;
 
-    @ManyToMany
-    @JoinTable(
-            name = "television_wallbrackets",
-            joinColumns = @JoinColumn(name = "television"),
-            inverseJoinColumns = @JoinColumn(name = "wallbracket")
-    )
-    private List<WallBracket> wallBrackets = new ArrayList<>();
+    @OneToMany(mappedBy = "television")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
+    private Collection<TelevisionWallBracket> televisionWallBrackets;
 
     public Television() {
     }
 
-    public Television(String type, String brand, String name, Double price, Double availableSize, int refreshRate, String screenType, String screenQuality, boolean smartTv, boolean wifi, boolean voiceControl, boolean hdr, boolean bluetooth, boolean ambiLight, int originalStock, int sold, String soldAt, String boughtAt) {
+    public Television(String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, boolean smartTv, boolean wifi, boolean voiceControl, boolean hdr, boolean bluetooth, boolean ambiLight, Integer originalStock, Integer sold, String soldAt, String boughtAt) {
         this.type = type;
         this.brand = brand;
         this.name = name;
@@ -131,11 +131,11 @@ public class Television {
         this.availableSize = availableSize;
     }
 
-    public int getRefreshRate() {
+    public Double getRefreshRate() {
         return refreshRate;
     }
 
-    public void setRefreshRate(int refreshRate) {
+    public void setRefreshRate(Double refreshRate) {
         this.refreshRate = refreshRate;
     }
 
@@ -203,19 +203,19 @@ public class Television {
         this.ambiLight = ambiLight;
     }
 
-    public int getOriginalStock() {
+    public Integer getOriginalStock() {
         return originalStock;
     }
 
-    public void setOriginalStock(int originalStock) {
+    public void setOriginalStock(Integer originalStock) {
         this.originalStock = originalStock;
     }
 
-    public int getSold() {
+    public Integer getSold() {
         return sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(Integer sold) {
         this.sold = sold;
     }
 
@@ -267,11 +267,11 @@ public class Television {
         this.ciModule = ciModule;
     }
 
-    public Collection<WallBracket> getWallBrackets() {
-        return wallBrackets;
+    public Collection<TelevisionWallBracket> getWallBrackets() {
+        return televisionWallBrackets;
     }
 
-    public void setWallBrackets(List<WallBracket> wallBrackets) {
-        this.wallBrackets = wallBrackets;
+    public void setWallBrackets(List<TelevisionWallBracket> televisionWallBrackets) {
+        this.televisionWallBrackets = televisionWallBrackets;
     }
 }

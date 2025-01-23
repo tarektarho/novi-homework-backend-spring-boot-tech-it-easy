@@ -1,42 +1,31 @@
 package nl.novi.techiteasy.dtos.televisionDtos;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.util.Date;
+import jakarta.validation.constraints.*;
 
 public class TelevisionCreateDTO {
 
-    @NotBlank(message = "Type cannot be empty")
+    @NotNull(message = "Type is required") // Type moet ingevuld verplicht worden in je JSON, je krijgt een message als je dit niet doet.
     private String type;
-
-    @NotBlank(message = "Brand cannot be empty")
+    @NotNull(message = "Brand is required")
     private String brand;
-
-    @NotBlank(message = "Name cannot be empty")
+    @Size(max = 20, message = "Name must be between 0-20 characters") // maximale lengte van de string, min is automatisch 0.
     private String name;
-
-    @NotNull(message = "Price cannot be null")
-    @Min(value = 0, message = "Price must be greater than 0")
-    @Max(value = 10000, message = "Price must be less than 10000")
+    @Positive(message = "Price must be higher than zero")
     private Double price;
     private Double availableSize;
-    private int refreshRate = 0;
+    private Double refreshRate;
     private String screenType;
     private String screenQuality;
-    private boolean smartTv = false;
-    private boolean wifi = false;
-    private boolean voiceControl = false;
-    private boolean hdr = false;
-    private boolean bluetooth = false;
-    private boolean ambiLight = false;
-    private int originalStock = 0;
-    private int sold = 0;
-    private String soldAt;
-    private String boughtAt;
-    private final Date createdAt = new Date();
+    private Boolean smartTv;
+    private Boolean wifi;
+    private Boolean voiceControl;
+    @AssertTrue(message = "All television must be hdr minimum")
+    private Boolean hdr;
+    private Boolean bluetooth;
+    private Boolean ambiLight;
+    @PositiveOrZero(message = "Television cannot have negative stock")
+    private Integer originalStock;
+    private Integer sold;
 
     // Getters and Setters
     public String getType() {
@@ -79,11 +68,11 @@ public class TelevisionCreateDTO {
         this.availableSize = availableSize;
     }
 
-    public int getRefreshRate() {
+    public Double getRefreshRate() {
         return refreshRate;
     }
 
-    public void setRefreshRate(int refreshRate) {
+    public void setRefreshRate(Double refreshRate) {
         this.refreshRate = refreshRate;
     }
 
@@ -103,88 +92,67 @@ public class TelevisionCreateDTO {
         this.screenQuality = screenQuality;
     }
 
-    public boolean isSmartTv() {
+    public Boolean getSmartTv() {
         return smartTv;
     }
 
-    public void setSmartTv(boolean smartTv) {
+    public void setSmartTv(Boolean smartTv) {
         this.smartTv = smartTv;
     }
 
-    public boolean isWifi() {
+    public Boolean getWifi() {
         return wifi;
     }
 
-    public void setWifi(boolean wifi) {
+    public void setWifi(Boolean wifi) {
         this.wifi = wifi;
     }
 
-    public boolean isVoiceControl() {
+    public Boolean getVoiceControl() {
         return voiceControl;
     }
 
-    public void setVoiceControl(boolean voiceControl) {
+    public void setVoiceControl(Boolean voiceControl) {
         this.voiceControl = voiceControl;
     }
 
-    public boolean isHdr() {
+    public Boolean getHdr() {
         return hdr;
     }
 
-    public void setHdr(boolean hdr) {
+    public void setHdr(Boolean hdr) {
         this.hdr = hdr;
     }
 
-    public boolean isBluetooth() {
+    public Boolean getBluetooth() {
         return bluetooth;
     }
 
-    public void setBluetooth(boolean bluetooth) {
+    public void setBluetooth(Boolean bluetooth) {
         this.bluetooth = bluetooth;
     }
 
-    public boolean isAmbiLight() {
+    public Boolean getAmbiLight() {
         return ambiLight;
     }
 
-    public void setAmbiLight(boolean ambiLight) {
+    public void setAmbiLight(Boolean ambiLight) {
         this.ambiLight = ambiLight;
     }
 
-    public int getOriginalStock() {
+    public Integer getOriginalStock() {
         return originalStock;
     }
 
-    public void setOriginalStock(int originalStock) {
+    public void setOriginalStock(Integer originalStock) {
         this.originalStock = originalStock;
     }
 
-    public int getSold() {
+    public Integer getSold() {
         return sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(Integer sold) {
         this.sold = sold;
     }
-
-    public String getSoldAt() {
-        return soldAt;
-    }
-
-    public void setSoldAt(String soldAt) {
-        this.soldAt = soldAt;
-    }
-
-    public String getBoughtAt() {
-        return boughtAt;
-    }
-
-    public void setBoughtAt(String boughtAt) {
-        this.boughtAt = boughtAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
 }

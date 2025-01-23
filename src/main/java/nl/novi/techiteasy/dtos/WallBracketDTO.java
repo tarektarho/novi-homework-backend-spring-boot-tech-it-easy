@@ -2,7 +2,7 @@ package nl.novi.techiteasy.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import nl.novi.techiteasy.models.WallBracket;
+import nl.novi.techiteasy.models.TelevisionWallBracket;
 
 public class WallBracketDTO {
 
@@ -18,14 +18,13 @@ public class WallBracketDTO {
     public WallBracketDTO () {
     }
 
-    public WallBracketDTO (WallBracket wallBracket) {
-        this.id = wallBracket.getId();
-        this.size = wallBracket.getSize();
-        this.adjustable = wallBracket.getAdjustable();
-        this.name = wallBracket.getName();
-        this.price = wallBracket.getPrice();
+    public WallBracketDTO(Long id, String size, Boolean adjustable, String name, Double price) {
+        this.id = id;
+        this.size = size;
+        this.adjustable = adjustable;
+        this.name = name;
+        this.price = price;
     }
-
     // Getters and Setters
 
     public Long getId() {

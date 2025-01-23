@@ -102,12 +102,4 @@ public class TelevisionsController {
         Collection<WallBracketDTO> wallBrackets = televisionWallBracketService.getWallBracketsByTelevisionId(id);
         return ResponseEntity.ok(wallBrackets);
     }
-
-    @PutMapping("/{id}/wallbrackets/{wallBracketId}")
-    public ResponseEntity<Long> assignWallBracketToTelevision(
-            @PathVariable Long id,
-            @PathVariable Long wallBracketId) {
-        var AssignedId = televisionWallBracketService.addTelevisionWallBracket(id, wallBracketId);
-        return ResponseEntity.ok(AssignedId);
-    }
 }
